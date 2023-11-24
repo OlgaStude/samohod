@@ -47,7 +47,7 @@
           <div v-if="!filter_is_on" v-for="product in products">
             <div class="product_item_div">
             
-            <a :href="$router.resolve({name: 'ProductPage', params: { id: user_id}}).href">
+            <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id}}).href">
             <img :src="'/storage/printer_imgs/'+product.img" alt="">
             </a>
             <p class="product_item_name">{{ product.name }}</p>
@@ -57,7 +57,7 @@
           </div>
           <div v-else v-for="product in products" class="product_item_div">
               <div v-if="filter_word == product.categories_id">
-                <a :href="$router.resolve({name: 'ProductPage', params: { id: user_id}}).href">
+                <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id}}).href">
                 <img :src="'/storage/printer_imgs/'+product.img" alt="">
                 </a>
                   <p class="product_item_name">{{ product.name }}</p>

@@ -21,7 +21,7 @@
             </div>
             <img class="logo_img" src="storage/img/logo.png" alt="">
         </div>
-        <section class="slider-wrapper">
+        <!-- <section class="slider-wrapper">
             <p class="slider_title">Новинки компании</p>
         <button class="slide-arrow" id="slide-arrow-prev">
             &#8249;
@@ -30,17 +30,32 @@
             &#8250;
         </button>
         <ul class="slides-container" id="slides-container">
-            <div class="slide" v-for="product in products">
-                            <img :src="'/storage/printer_imgs/'+product.img" alt="">
-                            <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id }}).href">{{ product.name }}</a>
-                        </div>
+            
         </ul>
-        </section>
+        </section> -->
+        
+        <section class="slider-wrapper">
+            <button class="slide-arrow" id="slide-arrow-prev">
+              &#8249;
+            </button>
+            <button class="slide-arrow" id="slide-arrow-next">
+              &#8250;
+            </button>
+            <ul class="slides-container" id="slides-container">
+                <div class="slide" v-for="product in products">
+                    <img :src="'/storage/printer_imgs/'+product.img" alt="">
+                    <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id }}).href">{{ product.name }}</a>
+                </div>
+            </ul>
+          </section>
+
     </main>
     </div>
 </template>
 
 <style>
+
+
 * {
     margin: 0;
     padding: 0;
@@ -97,7 +112,9 @@ header {
   overflow: hidden;
 }
 .slide img{
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
 }
 .slides-container {
   height: calc(100vh - 2rem);
@@ -124,6 +141,7 @@ header {
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 100ms;
+  z-index: 20;
 }
 .slide-arrow:hover,
 .slide-arrow:focus {
@@ -158,6 +176,7 @@ export default {
         return {
             is_logged: false,
             is_admin: false,
+            products:[]
         };
     },
     created() {
@@ -173,28 +192,30 @@ export default {
                     }
                 });
         }
+        setTimeout(()=>{
+                const slidesContainer = document.getElementById("slides-container");
+                const slide = document.querySelector(".slide");
+                console.log(slidesContainer)
+                const prevButton = document.getElementById("slide-arrow-prev");
+                const nextButton = document.getElementById("slide-arrow-next");
+                nextButton.addEventListener("click", () => {
+                    const slideWidth = slide.clientWidth;
+                    slidesContainer.scrollLeft += slideWidth;
+                    console.log(slidesContainer)
+                });
+                prevButton.addEventListener("click", () => {
+                const slideWidth = slide.clientWidth;
+                slidesContainer.scrollLeft -= slideWidth;
+                });
+            }, 2000)
         this.$axios
             .get("http://127.0.0.1:8000/api-samohod/productsslider")
             .then((response) => {
                 this.products = response.data.content;
                 console.log(this.products)
+                
             });
-            setTimeout(()=>{
-                const slidesContainer = document.getElementById("slides-container");
-                const slide = document.querySelector(".slide");
-                console.log(slide)
-                const prevButton = document.getElementById("slide-arrow-prev");
-                const nextButton = document.getElementById("slide-arrow-next");
-                nextButton.addEventListener("click", () => {
-                const slideWidth = slide.clientWidth;
-                slidesContainer.scrollLeft += slideWidth;
-                });
-                prevButton.addEventListener("click", () => {
-                    console.log('!!')
-                const slideWidth = slide.clientWidth;
-                slidesContainer.scrollLeft -= slideWidth;
-                });
-            }, 2000)
+            
     },
     methods: {
         logout() {

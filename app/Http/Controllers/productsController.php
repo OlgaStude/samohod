@@ -26,6 +26,13 @@ class productsController extends Controller
         return response($products, 200)->header('Status', '200');
     }
 
+    public function show_slider()
+    {
+        $products = ['content' =>  productRecourse::collection(Product::paginate(5))];
+
+        return response($products, 200)->header('Status', '200');
+    }
+
 
     public function reorder_show(Request $req)
     {

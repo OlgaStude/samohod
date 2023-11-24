@@ -24,6 +24,7 @@ Route::post('/login', [userController::class, 'login']);
 
 
 Route::get('/products', [productsController::class, 'show']);
+Route::get('/productsslider', [productsController::class, 'show_slider']);
 Route::get('/product/{id}', [productsController::class, 'show_one']);
 Route::post('/productsreorder', [productsController::class, 'reorder_show']);
 
