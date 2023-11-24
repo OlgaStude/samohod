@@ -15,7 +15,10 @@
     <form action="">
       <input type="text" v-model="name" id="name" placeholder="Название">
       <p class="add_product_error">{{ errors.name }}</p>
-      <input type="file" ref="img" id="img">
+      <label class="custom-file-upload input-file">
+        <input @change="show_name()" class="file_upload" type="file" id="pfp" ref="img">
+        <span id="file_selected">{{ file_name }}</span>
+      </label>
       <p class="add_product_error">{{ errors.img }}</p>
       <select @change="change_category" name="" id="categories" class="category_input">
         <option value="">Категория</option>
@@ -80,6 +83,30 @@
     font-size: 32px;
 }
 
+.file_upload{
+   display: none;
+}
+
+label{
+   width: 760px;
+   height: 80px;
+   border-radius: 50px;
+   font-size: 32px;
+   display: block;
+   text-align: center;
+   padding-top: 5px;
+   cursor: pointer;
+   margin-top: 3%;
+   padding-left: 2%;
+   padding-top: 1%;
+   box-sizing: border-box;
+   background-color: #fff;
+   margin-left: 30%;
+  }
+  label span{
+   background-color: #fff;
+  }
+
 </style>
 
 <script>
@@ -106,7 +133,9 @@ export default {
         year: null,
         model: null,
         price: null,
-      }
+      },
+      file_name: 'Загрузите фото'
+
     };
   },
   created() {
@@ -119,6 +148,9 @@ export default {
             });
   },
   methods: {
+    show_name(){
+        this.file_name = this.$refs.img.files[0].name
+    },
     change_category(e){
       console.log(e.target.value)
       this.category = e.target.value
