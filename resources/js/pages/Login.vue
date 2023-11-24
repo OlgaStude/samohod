@@ -148,7 +148,7 @@ export default {
             this.$axios.get("/sanctum/csrf-cookie").then((response) => {
                 this.$axios
                     .post("api-samohod/login", {
-                        email: this.email,
+                        login: this.email,
                         password: this.password,
                     })
                     .then((response) => {
@@ -156,7 +156,7 @@ export default {
                         window.location.href = "/";
                     })
                     .catch((err) => {
-                        console.log(err.response.data.warning.message);
+                        console.log(err.response.data.warning.warnings);
                         if (
                             err.response.data.warning.message ==
                             "Ненеудачный вход"

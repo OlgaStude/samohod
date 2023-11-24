@@ -86,7 +86,7 @@ class userController extends Controller
 
         try {
             $fields = $req->validate([
-                'email' => 'required|string',
+                'login' => 'required|string',
                 'password' => 'required|string'
             ]);
         } catch (ValidationException $e) {
@@ -109,7 +109,7 @@ class userController extends Controller
             ], 422)->header('status', '422');
         }
 
-        $user = User::where('email', $fields['email'])->first();
+        $user = User::where('login', $fields['login'])->first();
 
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([

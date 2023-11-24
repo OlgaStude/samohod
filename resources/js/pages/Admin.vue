@@ -427,7 +427,7 @@ export default {
                 data: {
                   id: id,
                   status: status,
-                  reson: this.reason
+                  reason: this.reason
                 }
             })
             .then((response) => {
@@ -442,7 +442,7 @@ export default {
                   e.target.nextElementSibling.style.display = 'none'
               });
             }).catch((err) => {
-              this.error.reason = err.response.data.warning.warnings[0].reson
+              this.error.reason = err.response.data.warning.warnings[0].reason
               
               
           });;
