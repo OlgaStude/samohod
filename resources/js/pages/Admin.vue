@@ -18,15 +18,15 @@
         <option value="">Выберите категорию</option>
         <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
       </select>
-      {{ category_delete_success }}
+      <p class="category_control_message">{{ category_delete_success }}</p>
       <button @click="deleteCategory" class="delete_category_btn">Удалить категорию</button>
   </div>
 
   <div class="add_category_div">
   <form action="" method="post">
-      <input type="text" v-model="new_category" name="name" placeholder="Название категории">
-      {{ error.category }}
-      {{ category_create_success }}
+      <input type="text" v-model="new_category" name="name" placeholder="Название категории" class="admin_category_input">
+      <p class="category_control_message">{{ error.category }}</p>
+      <p class="category_control_message">{{ category_create_success }}</p>
       <button @click="addCategory" class="add_category_btn">Добавить категорию</button>
   </form>
   </div>
@@ -51,11 +51,11 @@
 
   <form v-if="show_form" action="">
     <h1>Редактирование товара</h1>
-    <input type="text" v-model="updated_name" id="updated_name" placeholder="Название">
+    <input type="text" v-model="updated_name" id="updated_name" placeholder="Название" class="update_product_input">
       <p>{{ error.updated_name }}</p>
-      <input type="file" ref="updated_img" id="img">
+      <input type="file" ref="updated_img" id="img" class="update_product_input">
       <p>{{ error.updated_img }}</p>
-      <input type="text" v-model="updated_price" id="updated_price" placeholder="Цена">
+      <input type="text" v-model="updated_price" id="updated_price" placeholder="Цена" class="update_product_input">
       <p>{{ error.updated_price }}</p>
       <button @click="update_product" class="window_update_product_btn">Редактировать товар</button>
       <button @click="close_form" class="close_form_btn">Закрыть</button>
@@ -71,19 +71,19 @@
         <p class="order_user_name">{{ order.user_name }}</p>
         <p class="order_time">{{ order.time }}</p>
         </div>
-        <div v-for="product in order.products">
+        <div v-for="product in order.products" class="order_item_div2">
           <p class="order_product_name">{{ product.name }}</p>
           <p class="order_product_price">{{ product.price }}</p>
         </div>
-        <p>{{ order.status }}</p>
+        <p class="order_status2">{{ order.status }}</p>
       </div>
       <div v-if="order.status == 'Новый'">
         <button @click="change_order_status($event, 'yes', order.id)" class="order_confirm">Потвердить заказ</button>
         <button @click="open_cancel_form" class="order_decline">Отменить заказ</button>
         <div name="cancel_form" class="cancel_form">
-          <textarea name="" id="" v-model="reason" cols="30" rows="10"></textarea>
-          {{ error.reason }}
-          <button @click="change_order_status($event, 'no', order.id)">Отменить заказ</button>
+          <textarea name="" id="" v-model="reason" cols="30" rows="10" class="cancel_input" placeholder="Причина отмены"></textarea>
+          <p>{{ error.reason }}</p>
+          <button @click="change_order_status($event, 'no', order.id)" class="order_cancel_btn">Отменить</button>
         </div>
       </div>
     </div>
@@ -100,13 +100,55 @@
   display: none;
 }
 
+.cancel_input {
+  width: 500px;
+  height: 125px;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  margin-top: 3%;
+  margin-right: 20%;
+  padding: 2%;
+  font-size: 16px;
+  font-family: "font";
+}
+
+.order_cancel_btn {
+  width: 219px;
+  height: 54px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  font-family: "font";
+  margin-top: 1%;
+  margin-right: 17%;
+}
+
 .category_control_div {
   text-align: left;
+}
+
+.category_control_message {
+  position: absolute;
+  font-size: 24px;
+  left: 5%;
 }
 
 .category_control_div h1 {
   text-align: center;
   font-size: 64px;
+}
+
+.admin_category_input {
+    background-color: #ffffff;
+    border-radius: 50px;
+    border: none;
+    width: 729px;
+    height: 80px;
+    margin-top: 3%;
+    font-size: 32px;
+    padding-left: 2%; 
 }
 
 .delete_category_div, .add_category_div {
@@ -161,6 +203,17 @@
   margin-right: 26%;
 }
 
+.update_product_input {
+    background-color: #ffffff;
+    border-radius: 50px;
+    border: none;
+    width: 729px;
+    height: 80px;
+    margin-top: 3%;
+    font-size: 32px;
+    padding-left: 2%;
+}
+
 .update_product_btn {
   margin-right: 18%;
 }
@@ -196,12 +249,27 @@
 
 .order_info {
   display: flex;
+  background-color: #E5F0FF
 }
 
 .order_info .order_user_name, .order_time {
   font-size: 16px;
   color: #686868;
   margin-top: 2%;
+  background-color: #E5F0FF
+}
+
+.order_item_div2 {
+  background-color: #E5F0FF
+}
+
+
+.order_status2 {
+  background-color: #E5F0FF;
+  font-size: 32px;
+  text-align: center;
+  position: relative;
+  top: 10%;
 }
 
 .order_user_name {

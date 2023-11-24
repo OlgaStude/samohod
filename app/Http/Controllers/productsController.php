@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\productRecourse;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -132,6 +133,21 @@ class productsController extends Controller
 
 
         Cart::where('products_id', '=', $id)->delete();
+
+        $orders = Order::all();
+
+        foreach($orders as $order){
+            $arr = explode(' ', $order->products);
+            $counter = 0;
+            foreach($arr as $el){
+                if($el == $id){
+                    $counter++;
+                }
+            }
+            if($counter > 0){
+                Order::where('id', '=', $order->id)->delete();
+            }
+        }
 
         Product::where('id', '=', $id)->delete();
         $products = Product::all();

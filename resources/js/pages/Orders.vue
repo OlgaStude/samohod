@@ -15,7 +15,7 @@
         <div class="orders_div">
             <div v-for="order in orders">
                 <div class="order_item_div">
-                <div v-for="product in order.products">
+                <div v-for="product in order.products" class="product_order_status_div">
                     <p class="order_product_name">{{ product.name }}</p>
                     <p class="order_product_price">{{ product.price }} ₽</p>
                 </div>
@@ -46,13 +46,19 @@
 .order_item_div .order_product_name, .order_product_price{
     font-size: 20px;
     margin-top: 5%;
+    background-color: #E5F0FF;
+}
+
+.product_order_status_div {
+    background-color: #E5F0FF;
 }
 
 .order_status {
     font-size: 32px;
-    position: absolute;
-    bottom: 0;
-    margin-left: 10%;
+    text-align: center;
+    position: relative;
+    top: 18%;
+    background-color: #E5F0FF;
 }
 
 </style>

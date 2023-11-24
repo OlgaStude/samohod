@@ -21,19 +21,7 @@
             </div>
             <img class="logo_img" src="storage/img/logo.png" alt="">
         </div>
-        <!-- <section class="slider-wrapper">
-            <p class="slider_title">Новинки компании</p>
-        <button class="slide-arrow" id="slide-arrow-prev">
-            &#8249;
-        </button>
-        <button class="slide-arrow" id="slide-arrow-next">
-            &#8250;
-        </button>
-        <ul class="slides-container" id="slides-container">
-            
-        </ul>
-        </section> -->
-        
+        <h1>Новинки компании</h1>
         <section class="slider-wrapper">
             <button class="slide-arrow" id="slide-arrow-prev">
               &#8249;
@@ -44,7 +32,7 @@
             <ul class="slides-container" id="slides-container">
                 <div class="slide" v-for="product in products">
                     <img :src="'/storage/printer_imgs/'+product.img" alt="">
-                    <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id }}).href">{{ product.name }}</a>
+                    <a :href="$router.resolve({name: 'ProductPage', params: { id: product.id }}).href" class="slider_product_name">{{ product.name }}</a>
                 </div>
             </ul>
           </section>
@@ -106,16 +94,44 @@ header {
     font-size: 64px;
 }
 
+
+
 .slider-wrapper {
   margin: 1rem;
   position: relative;
   overflow: hidden;
+  background-color: white;
+  width: 1610px;
+  height: 683px;
+  border-radius: 108px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.slide {
+    background-color: white;
+    display: flex;
+    max-height: 100%;
+    flex-direction: column;
+}
+
 .slide img{
     max-width: 100%;
-    max-height: 100%;
-    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 283px;
+    margin-top: 10%;
 }
+
+.slider_product_name {
+    text-decoration: none;
+    font-size: 40px;
+    background-color: white;
+    color: black;
+    position: relative;
+    top: 10%;
+}
+
 .slides-container {
   height: calc(100vh - 2rem);
   width: 100%;
@@ -131,12 +147,12 @@ header {
   display: flex;
   top: 0;
   bottom: 0;
-  margin: auto;
+  margin-top: 18%;
   height: 4rem;
   background-color: white;
   border: none;
   width: 2rem;
-  font-size: 3rem;
+  font-size: 80px;
   padding: 0;
   cursor: pointer;
   opacity: 0.5;
@@ -151,11 +167,15 @@ header {
   left: 0;
   padding-left: 0.25rem;
   border-radius: 0 2rem 2rem 0;
+  margin-left: 2%;
+  color: black;
 }
 #slide-arrow-next {
   right: 0;
   padding-left: 0.75rem;
   border-radius: 2rem 0 0 2rem;
+  margin-right: 2%;
+  color: black;
 }
 .slide {
   width: 100%;

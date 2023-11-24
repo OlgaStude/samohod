@@ -10,10 +10,10 @@
             <a @click="logout" class="logout">Выйти</a>
         </div>
     </header>
-    <main>
+    <main class="cart_main">
         <form v-if="order_form_is_on" action="" class="order_window">
             <p class="order_window_title">Подтвердите пароль для формирования заказа</p>
-            <input v-model="password" type="password" name="password" id="password" placeholder="Пароль">
+            <input v-model="password" type="password" name="password" id="password" placeholder="Пароль" class="password_confirm_input">
             <p v-if="password_message != ''" class="cart_error">{{ password_message }}</p>
             <p v-else class="cart_error" >{{ order_message }}</p>
             <button @click="order" class="order_btn">Сформировать заказ</button>
@@ -40,6 +40,9 @@
 
 <style>
 
+.cart_main{
+    min-height: 700px;
+}
     .cart_title_div {
         display: flex;
         margin-top: 6%;
@@ -69,6 +72,18 @@
         white-space: nowrap;
     }
 
+
+    .password_confirm_input {
+    background-color: #ffffff;
+    border-radius: 50px;
+    border: none;
+    width: 729px;
+    height: 80px;
+    margin-top: 3%;
+    font-size: 32px;
+    padding-left: 2%;
+}
+
     .cart_product_div {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -87,6 +102,7 @@
         cursor: pointer;
         margin-right: 16%;
         margin-top: 2%;
+        background-color: white;
     }
 
     .order_window {

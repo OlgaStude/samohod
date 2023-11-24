@@ -13,7 +13,7 @@
   <main>
     <h1>Добавление товара</h1>
     <form action="">
-      <input type="text" v-model="name" id="name" placeholder="Название">
+      <input type="text" v-model="name" id="name" placeholder="Название" class="category_input">
       <p class="add_product_error">{{ errors.name }}</p>
       <label class="custom-file-upload input-file">
         <input @change="show_name()" class="file_upload" type="file" id="pfp" ref="img">
@@ -25,13 +25,13 @@
         <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
       </select>
       <p class="add_product_error">{{ errors.category_id }}</p>
-      <input type="text" v-model="manufacturer" id="manufacturer" placeholder="Производитель">
+      <input type="text" v-model="manufacturer" id="manufacturer" placeholder="Производитель" class="category_input">
       <p class="add_product_error">{{ errors.manufacturer }}</p>
-      <input type="text" v-model="year" id="year" placeholder="Год выпуска">
+      <input type="text" v-model="year" id="year" placeholder="Год выпуска" class="category_input">
       <p class="add_product_error">{{ errors.year }}</p>
-      <input type="model" v-model="model" id="model" placeholder="Модель">
+      <input type="model" v-model="model" id="model" placeholder="Модель" class="category_input">
       <p class="add_product_error">{{ errors.model }}</p>
-      <input type="price" v-model="price" id="price" placeholder="Цена">
+      <input type="price" v-model="price" id="price" placeholder="Цена" class="category_input">
       <p class="add_product_error">{{ errors.price }}</p>
       <p class="add_product_error">{{ product_add_success }}</p>
       <button id="send_btn" @click="add_product" class="add_product_btn">Добавить товар</button>
@@ -87,7 +87,7 @@
    display: none;
 }
 
-label{
+.custom-file-upload{
    width: 760px;
    height: 80px;
    border-radius: 50px;
@@ -102,8 +102,8 @@ label{
    box-sizing: border-box;
    background-color: #fff;
    margin-left: 30%;
-  }
-  label span{
+  } 
+  .custom-file-upload span{
    background-color: #fff;
   }
 

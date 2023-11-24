@@ -16,6 +16,7 @@
                     v-model="email"
                     id="email"
                     placeholder="Почта"
+                    class="login_input"
                 />
                 <p>{{ errors.email }}</p>
                 <input
@@ -23,6 +24,7 @@
                     v-model="password"
                     id="password"
                     placeholder="Пароль"
+                    class="login_input"
                 />
                 <p>{{ errors.password }}</p>
                 <p>{{ errors.auth }}</p>
@@ -99,7 +101,7 @@ main {
     text-align: center;
 }
 
-input {
+.login_input {
     background-color: #ffffff;
     border-radius: 50px;
     border: none;
@@ -118,6 +120,7 @@ input {
     border: none;
     font-size: 32px;
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 </style>
 

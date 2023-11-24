@@ -10,13 +10,14 @@
         <main>
             <h1>Регистрация</h1>
             <form action="">
-                <input type="text" v-model="name" id="name" placeholder="Имя" />
+                <input type="text" v-model="name" id="name" placeholder="Имя" class="register_input" />
                 <p>{{ errors.name }}</p>
                 <input
                     type="text"
                     v-model="surname"
                     id="surname"
                     placeholder="Фамилия"
+                    class="register_input"
                 />
                 <p>{{ errors.surname }}</p>
                 <input
@@ -24,6 +25,7 @@
                     v-model="paternname"
                     id="paternname"
                     placeholder="Отчество (необязательно)"
+                    class="register_input"
                 />
                 <p>{{ errors.paternname }}</p>
                 <input
@@ -31,6 +33,7 @@
                     v-model="login"
                     id="login"
                     placeholder="Логин"
+                    class="register_input"
                 />
                 <p>{{ errors.login }}</p>
                 <input
@@ -38,6 +41,7 @@
                     v-model="email"
                     id="email"
                     placeholder="Почта"
+                    class="register_input"
                 />
                 <p>{{ errors.email }}</p>
                 <input
@@ -45,6 +49,7 @@
                     v-model="password"
                     id="password"
                     placeholder="Пароль"
+                    class="register_input"
                 />
                 <p>{{ errors.password[0] }}</p>
                 <input
@@ -52,6 +57,7 @@
                     v-model="password_confirmation"
                     id="password"
                     placeholder="Подтвердите пароль"
+                    class="register_input"
                 />
                 <p>{{ errors.password[1] }}</p>
                 <input
@@ -59,6 +65,7 @@
                     v-model="is_checked"
                     type="checkbox"
                     id="check"
+                    class="register_input"
                 />
                 <label for="check" class="accept">Я согласен/согласна на обработку данных</label>
                 <button
@@ -100,6 +107,18 @@
     font-size: 32px;
 }
 
+.register_input {
+    background-color: #ffffff;
+    border-radius: 50px;
+    border: none;
+    width: 729px;
+    height: 80px;
+    margin-top: 3%;
+    font-size: 32px;
+    padding-left: 2%;
+}
+
+
 .register_btn {
     width: 345px;
     height: 80px;
@@ -112,6 +131,7 @@
     top: 8vh;
     right: 21%;
     cursor: pointer;
+    margin-bottom: 2%;
 }
 </style>
 <script>
