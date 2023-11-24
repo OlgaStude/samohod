@@ -60,7 +60,7 @@
                     type="checkbox"
                     id="check"
                 />
-                <label for="check" class="accept">Согласие</label>
+                <label for="check" class="accept">Я согласен/согласна на обработку данных</label>
                 <button
                     disabled
                     id="send_btn"
@@ -81,16 +81,22 @@
     text-decoration: none;
 }
 
-.register {
-}
+
 .underline {
     text-decoration: 2px underline white;
     text-underline-offset: 20px;
 }
 
+#check {
+    width: 40px;
+    height: 40px;
+    margin-left: 10%;
+}
+
 .accept {
     position: relative;
-    margin-right: 10%;
+    left: 2%;
+    bottom: 1vh;
     font-size: 32px;
 }
 
@@ -104,11 +110,10 @@
     color: black;
     position: relative;
     top: 8vh;
-    right: 27%;
+    right: 21%;
     cursor: pointer;
 }
 </style>
-
 <script>
 export default {
     name: "Registration",
